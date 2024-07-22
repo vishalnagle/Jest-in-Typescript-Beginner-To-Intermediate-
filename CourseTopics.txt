@@ -1,5 +1,10 @@
 Tutorial url: https://www.youtube.com/watch?v=nBxd9tXeGjE&list=LL&index=1
 
+This tutorial uses jest with typescript
+
 TOPICS:
 
 1. Matchers
+2. FIRST-U principle
+3. beforeEach(), afterEach(),
+

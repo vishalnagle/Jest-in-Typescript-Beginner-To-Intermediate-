@@ -1,4 +1,4 @@
-import { product, authenticateUser } from "../app/BasicUtils"
+import { product, authenticateUser, UserNameToLowercase } from "../app/BasicUtils"
 
 describe("BasicUtils test suite", () => {
     it("Returns the product of 3 and 2", () => {
@@ -9,11 +9,51 @@ describe("BasicUtils test suite", () => {
         expect(actual).toBeGreaterThan(3)
     })
 
-    it("User authentication", () => {
-        const sut = authenticateUser;
-        const actual = sut("developer", "dev");
-        expect(actual.usernameToLower).toBe("developer")
-        expect(actual.usernameCharacters).toEqual(["d", "e", "v", "e", "l", "o", "p", "e", "r"])
-        expect(actual.usernameCharacters).toContain("r")
+    describe("User authentication block", () => {
+        it("Username to be lowercase", () => {
+            const sut = authenticateUser;
+            const actual = sut("developer", "dev");
+            expect(actual.usernameToLower).toBe("developer")
+        })
+
+        it("Username characters check", () => {
+            const sut = authenticateUser;
+            const actual = sut("developer", "dev");
+            expect(actual.usernameCharacters).toEqual(["d", "e", "v", "e", "l", "o", "p", "e", "r"])
+        })
+
+        it("Check contains characters", () => {
+            const sut = authenticateUser;
+            const actual = sut("developer", "dev");
+            expect(actual.usernameCharacters).toContain("r")
+        })
     })
+
+    describe("UsernameToLowercase class test suite", () => {
+        // setup
+
+        let sut: UserNameToLowercase
+
+        beforeEach(() => {
+            sut = new UserNameToLowercase();
+        })
+
+        it("Returns the lowercase of valid username", () => {
+            const actual = sut.toLower("Bob");
+            expect(actual).toBe("bob")
+        })
+
+        it("Throws an error for invalid username", () => {
+            expect(() => sut.toLower("")).toThrow();
+        })
+
+        it("Throws an error for an invalid username", () => {
+            function handleError() {
+                const actual = sut.toLower("")
+            }
+            expect(handleError).toThrow()
+        })
+
+    })
+
 })
