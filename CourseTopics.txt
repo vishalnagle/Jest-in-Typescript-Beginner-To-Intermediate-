@@ -7,4 +7,6 @@ TOPICS:
 1. Matchers
 2. FIRST-U principle
 3. beforeEach(), afterEach(),
+4. it.each() method
+5. How to check coverage on browser
 

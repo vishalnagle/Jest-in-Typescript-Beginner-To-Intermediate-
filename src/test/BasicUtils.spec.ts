@@ -1,4 +1,4 @@
-import { product, authenticateUser, UserNameToLowercase } from "../app/BasicUtils"
+import { product, authenticateUser, UserNameToLowercase, usernameLowerCase } from "../app/BasicUtils"
 
 describe("BasicUtils test suite", () => {
     it("Returns the product of 3 and 2", () => {
@@ -54,6 +54,16 @@ describe("BasicUtils test suite", () => {
             expect(handleError).toThrow()
         })
 
+    })
+
+    describe("Using it.each in tests",()=>{
+        it.each([
+            {input:"AugustiNE",expected:"augustine"},
+            {input:"BOB",expected:"bob"},
+        ])('$input to lowercase should be $expected from parameterizing testing',({input,expected})=>{
+            const actual = usernameLowerCase(input);
+            expect(actual).toBe(expected)
+        })
     })
 
 })

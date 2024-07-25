@@ -25,3 +25,7 @@ export class UserNameToLowercase {
     }
 }
 
+export function usernameLowerCase(username:string){
+    return username.toLowerCase();
+}
+
